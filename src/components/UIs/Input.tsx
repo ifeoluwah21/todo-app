@@ -3,16 +3,27 @@ import React, { useRef } from "react";
 const Input: React.FC<{
 	type: React.HTMLInputTypeAttribute;
 	placeholder: string;
+	label: string;
 }> = React.forwardRef((props) => {
 	const inputRef = useRef<HTMLInputElement>(null);
 	return (
-		<input
-			ref={inputRef}
-			type={props.type}
-			placeholder={props.placeholder}
-			className={"rounded-full w-3/4 px-5 py-1"}
-			required
-		/>
+		<>
+			<label
+				htmlFor={props.label}
+				className="hidden">
+				{props.label}
+			</label>
+			<input
+				ref={inputRef}
+				id={props.label}
+				type={props.type}
+				placeholder={props.placeholder}
+				className={
+					"rounded-full w-3/4 max-w-sm mx-auto pl-8 py-2 mb-6 text-base placeholder:text-base placeholder:tracking-widest placeholder-slate-800 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+				}
+				required
+			/>
+		</>
 	);
 });
 
