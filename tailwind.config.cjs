@@ -6,6 +6,10 @@ module.exports = {
 			fontFamily: {
 				exo: ["Exo", "sans-serif"],
 			},
+			width: {
+				third: "60vw",
+				one: "25vw",
+			},
 			colors: {
 				primary: "#BACDFE",
 				secondary: "#FF0000",
