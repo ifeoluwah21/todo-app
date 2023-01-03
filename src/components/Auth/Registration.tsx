@@ -21,7 +21,7 @@ const Registration: React.FC = () => {
 				/>
 			</svg>
 
-			<form className="w-third min-w-sm mx-auto flex flex-col flex-nowrap items-center">
+			<form className="w-80 sm:w-96 max-w-sm mx-auto flex flex-col flex-nowrap items-center">
 				<Input
 					type="text"
 					placeholder="Enter full name here"
