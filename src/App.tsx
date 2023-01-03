@@ -1,12 +1,18 @@
 import "./App.css";
 import Login from "./components/Auth/Login";
 import Registration from "./components/Auth/Registration";
+import Profile from "./components/Profile/Profile";
 import Button from "./components/UIs/Button";
 import HomeSection from "./components/home/HomeSection";
+import img from "./assets/avatar.png";
+import Clock from "./components/UIs/Clock";
+import clock from "./assets/clock.png";
+import Wrapper from "./components/UIs/Wrapper";
+import TodoList from "./components/Todos/TodoList";
 
 function App() {
 	return (
-		<div className="bg-hero-pattern bg-no-repeat bg-left-top">
+		<main className="bg-hero-pattern font-exo bg-no-repeat bg-left-top">
 			{/* <Button
 				onClickHandler={(event) => {}}
 				className="border-none"
@@ -15,8 +21,16 @@ function App() {
 			</Button> */}
 			{/* <HomeSection /> */}
 			{/* <Registration /> */}
-			<Login />
-		</div>
+			{/* <Login /> */}
+			<Profile
+				img={img}
+				name={"Ifeoluwa"}
+			/>
+			<Wrapper>
+				<Clock img={clock} />
+				<TodoList />
+			</Wrapper>
+		</main>
 	);
 }
 
