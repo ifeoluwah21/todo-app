@@ -1,12 +1,14 @@
 import React from "react";
 import hero from "../../assets/hero-logo.png";
 import Button from "../UIs/Button";
+import { Link, useNavigate } from "react-router-dom";
 
 const HomeSection: React.FC = () => {
+	const navigate = useNavigate();
 	return (
 		<section
 			className={
-				"font-exo text-gray-700 grid place-content-center min-w-full py-20 bg-gradient-to-bl from-pry-02 via-pry-02 to-pry-03"
+				"font-exo text-gray-700 grid place-content-center mx-auto w-80 py-20 "
 			}>
 			<img
 				src={hero}
@@ -21,7 +23,9 @@ const HomeSection: React.FC = () => {
 				steps your are all set for the whole week, or a month. It is up to you.
 			</p>
 			<Button
-				onClickHandler={(event) => {}}
+				onClickHandler={(event) => {
+					navigate("Auth", { replace: true });
+				}}
 				className="border-none capitalize"
 				type={"button"}>
 				Get Started

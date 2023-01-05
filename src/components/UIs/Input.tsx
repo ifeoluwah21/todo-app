@@ -1,11 +1,17 @@
-import React, { useRef } from "react";
+import React, { HTMLInputTypeAttribute, useRef } from "react";
 
 const Input: React.FC<{
 	type: React.HTMLInputTypeAttribute;
 	placeholder: string;
 	label: string;
-}> = React.forwardRef((props) => {
-	const inputRef = useRef<HTMLInputElement>(null);
+}> = React.forwardRef<
+	HTMLInputElement,
+	{
+		type: React.HTMLInputTypeAttribute;
+		placeholder: string;
+		label: string;
+	}
+>((props, ref) => {
 	return (
 		<>
 			<label
@@ -14,7 +20,7 @@ const Input: React.FC<{
 				{props.label}
 			</label>
 			<input
-				ref={inputRef}
+				ref={ref}
 				id={props.label}
 				type={props.type}
 				placeholder={props.placeholder}
