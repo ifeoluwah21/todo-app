@@ -9,6 +9,7 @@ const Clock: React.FC<{
 				src={props.img}
 				alt="Clock"
 				className="w-24"
+				width={"96"}
 			/>
 			<figcaption className="text-base text-blue-700 tracking-wide font-bold self-end sm:self-center ">
 				Good afternoon

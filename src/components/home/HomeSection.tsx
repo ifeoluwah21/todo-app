@@ -14,6 +14,8 @@ const HomeSection: React.FC = () => {
 				src={hero}
 				alt="todo illustration"
 				className="mx-auto mb-12 object-cover"
+				width={"207"}
+				height={"210"}
 			/>
 			<h1 className="font-bold text-2xl text-center mb-10">
 				Design your TODOs
