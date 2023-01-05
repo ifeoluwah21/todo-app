@@ -17,6 +17,8 @@ const Login: React.FC = () => {
 				src={hero}
 				alt="todo illustration"
 				className="mx-auto mb-12 object-cover"
+				width={"210"}
+				height={"210"}
 			/>
 			<form
 				onSubmit={onSubmitHandler}

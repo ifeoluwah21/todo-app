@@ -9,7 +9,8 @@ const Profile: React.FC<{
 			<img
 				src={props.img}
 				alt={props.name}
-				className="w-40"
+				className="w-32 sm:w-40"
+				width={"160"}
 			/>
 			<figcaption className="text-slate-50 text-base text-center capitalize mt-2">
 				Welcome {props.name}
