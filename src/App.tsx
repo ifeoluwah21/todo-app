@@ -16,9 +16,10 @@ import {
 	createRoutesFromElements,
 } from "react-router-dom";
 import Home from "./Pages/Home";
-import Auth from "./Pages/Auth";
+import Auth from "./Pages/Register";
 import RootLayout from "./Pages/RootLayout";
 import UserTodos from "./Pages/UserTodos";
+import Register from "./Pages/Register";
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -30,8 +31,12 @@ const router = createBrowserRouter(
 				element={<Home />}
 			/>
 			<Route
-				path="auth"
-				element={<Auth />}
+				path="register"
+				element={<Register />}
+			/>
+			<Route
+				path="login"
+				element={<Login />}
 			/>
 			<Route
 				path="user"
