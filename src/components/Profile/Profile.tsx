@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Profile: React.FC<{
 	name: string;
@@ -15,11 +16,11 @@ const Profile: React.FC<{
 			<figcaption className="text-slate-50 text-base text-center capitalize mt-2">
 				Welcome {props.name}
 			</figcaption>
-			<a
-				href="#"
+			<Link
+				to="../home"
 				className="text-slate-50 text-sm font-bold hover:text-slate-300 mt-2 mb-4">
 				logout
-			</a>
+			</Link>
 		</figure>
 	);
 };

@@ -10,6 +10,7 @@ import clock from "./assets/clock.png";
 import Wrapper from "./components/UIs/Wrapper";
 import TodoList from "./components/Todos/TodoList";
 import {
+	Navigate,
 	Route,
 	RouterProvider,
 	createBrowserRouter,
@@ -27,19 +28,28 @@ const router = createBrowserRouter(
 			path="/"
 			element={<RootLayout />}>
 			<Route
+				path={"/home"}
+				element={
+					<Navigate
+						to={"/"}
+						replace={true}
+					/>
+				}
+			/>
+			<Route
 				index
 				element={<Home />}
 			/>
 			<Route
-				path="register"
+				path="/register"
 				element={<Register />}
 			/>
 			<Route
-				path="login"
+				path="/login"
 				element={<Login />}
 			/>
 			<Route
-				path="user"
+				path="/user"
 				element={<UserTodos />}
 			/>
 		</Route>

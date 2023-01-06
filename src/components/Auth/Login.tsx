@@ -24,14 +24,14 @@ const Login: React.FC = () => {
 				onSubmit={onSubmitHandler}
 				className="w-80 sm:w-96 max-w-sm mx-auto flex flex-col flex-nowrap items-center">
 				<Input
-					type="text"
-					placeholder="Enter password"
-					label="password"
+					type="email"
+					placeholder="Enter Your Email"
+					label="email"
 				/>
 				<Input
-					type="text"
-					placeholder="Confirm password"
-					label="confirmPassword"
+					type="password"
+					placeholder="Enter password"
+					label="password"
 				/>
 				<a
 					href="#"
