@@ -35,17 +35,17 @@ const Registration: React.FC = () => {
 					label="full name"
 				/>
 				<Input
-					type="text"
+					type="email"
 					placeholder="Enter email"
 					label="email"
 				/>
 				<Input
-					type="text"
+					type="password"
 					placeholder="Enter password"
 					label="password"
 				/>
 				<Input
-					type="text"
+					type="password"
 					placeholder="Confirm password"
 					label="confirmPassword"
 				/>

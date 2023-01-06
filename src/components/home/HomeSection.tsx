@@ -26,7 +26,7 @@ const HomeSection: React.FC = () => {
 			</p>
 			<Button
 				onClickHandler={(event) => {
-					navigate("Auth", { replace: true });
+					navigate("login", { replace: true });
 				}}
 				className="border-none capitalize"
 				type={"button"}>
