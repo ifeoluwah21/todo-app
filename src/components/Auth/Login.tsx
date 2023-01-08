@@ -26,6 +26,7 @@ const Login: React.FC = () => {
 				// The signed-in user info.
 				const user = result.user;
 				console.log(token, user);
+				navigate(`../user/${user.uid}`);
 				// ...
 			})
 			.catch((error) => {

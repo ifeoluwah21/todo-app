@@ -2,8 +2,12 @@ import React, { useRef } from 'react';
 import Input from '../UIs/Input';
 import Button from '../UIs/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../../api/firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth, provider } from '../../api/firebase';
+import {
+	GoogleAuthProvider,
+	createUserWithEmailAndPassword,
+	signInWithPopup,
+} from 'firebase/auth';
 import { Icon } from '@iconify/react';
 
 const Registration: React.FC = () => {
@@ -12,6 +16,30 @@ const Registration: React.FC = () => {
 	const passwordInputRef = useRef<HTMLInputElement>(null);
 	const confirmPasswordInputRef = useRef<HTMLInputElement>(null);
 	const navigate = useNavigate();
+
+	const signUpWithGoogle = () => {
+		signInWithPopup(auth, provider)
+			.then((result) => {
+				// This gives you a Google Access Token. You can use it to access the Google API.
+				const credential = GoogleAuthProvider.credentialFromResult(result);
+				const token = credential?.accessToken;
+				// The signed-in user info.
+				const user = result.user;
+				console.log(token, user);
+				navigate(`../user/${user.uid}`);
+				// ...
+			})
+			.catch((error) => {
+				// Handle Errors here.
+				const errorCode = error.code;
+				const errorMessage = error.message;
+				// The email of the user's account used.
+				const email = error.customData.email;
+				// The AuthCredential type that was used.
+				const credential = GoogleAuthProvider.credentialFromError(error);
+				// ...
+			});
+	};
 
 	const onSubmitHandler: (event: React.FormEvent) => void = (event) => {
 		event.preventDefault();
@@ -55,7 +83,7 @@ const Registration: React.FC = () => {
 			});
 	};
 	return (
-		<section className="font-exo text-gray-700 text-center grid place-items-center min-w-full pt-36 pb-10 min-h-screen bg-gradient-to-bl from-pry-02 via-pry-02 to-pry-03">
+		<section className="font-exo text-gray-700 text-center grid place-items-center min-w-full pt-36 pb-10 bg-gradient-to-bl from-pry-02 via-pry-02 to-pry-03">
 			<h1 className="font-bold text-4xl mb-4">Wel Done!</h1>
 			<p className="text-base lowercase mb-4">you're about to register now.</p>
 			<svg
@@ -108,7 +136,9 @@ const Registration: React.FC = () => {
 				<Button
 					type="button"
 					className="mt-4 max-w-sm w-3/4 flex justify-center items-center gap-2"
-					onClickHandler={(event) => {}}>
+					onClickHandler={(event) => {
+						signUpWithGoogle();
+					}}>
 					<span>Register with</span>{' '}
 					<Icon
 						className="text-2xl"
