@@ -1,5 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { signOut } from 'firebase/auth';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { auth } from '../../api/firebase';
 
 const Profile: React.FC<{
 	name: string;
@@ -10,13 +12,19 @@ const Profile: React.FC<{
 			<img
 				src={props.img}
 				alt={props.name}
-				className="w-32 sm:w-40"
-				width={"160"}
+				className="w-32 sm:w-40 rounded-full"
+				width={'160'}
 			/>
 			<figcaption className="text-slate-50 text-base text-center capitalize mt-2">
 				Welcome {props.name}
 			</figcaption>
 			<Link
+				onClick={(event) => {
+					// event.preventDefault();
+					signOut(auth)
+						.then((user) => user)
+						.catch((e) => console.log(e, 'error'));
+				}}
 				to="../home"
 				className="text-slate-50 text-sm font-bold hover:text-slate-300 mt-2 mb-4">
 				logout
