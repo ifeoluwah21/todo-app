@@ -2,46 +2,27 @@ import React, { useRef } from 'react';
 import Input from '../UIs/Input';
 import Button from '../UIs/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth, provider } from '../../api/firebase';
-import {
-	GoogleAuthProvider,
-	createUserWithEmailAndPassword,
-	signInWithPopup,
-} from 'firebase/auth';
 import { Icon } from '@iconify/react';
+import { userAuth } from '../../store/UserAuth';
 
 const Registration: React.FC = () => {
 	const fullnameInputRef = useRef<HTMLInputElement>(null);
 	const emailInputRef = useRef<HTMLInputElement>(null);
 	const passwordInputRef = useRef<HTMLInputElement>(null);
 	const confirmPasswordInputRef = useRef<HTMLInputElement>(null);
+	const { signUp, signWithGoogle } = userAuth();
 	const navigate = useNavigate();
 
-	const signUpWithGoogle = () => {
-		signInWithPopup(auth, provider)
-			.then((result) => {
-				// This gives you a Google Access Token. You can use it to access the Google API.
-				const credential = GoogleAuthProvider.credentialFromResult(result);
-				const token = credential?.accessToken;
-				// The signed-in user info.
-				const user = result.user;
-				console.log(token, user);
-				navigate(`../user/${user.uid}`);
-				// ...
-			})
-			.catch((error) => {
-				// Handle Errors here.
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				// The email of the user's account used.
-				const email = error.customData.email;
-				// The AuthCredential type that was used.
-				const credential = GoogleAuthProvider.credentialFromError(error);
-				// ...
-			});
+	const onLoginWithGoogleHandler = async (
+		event: React.MouseEvent
+	): Promise<void> => {
+		const result = await signWithGoogle();
+		if (!result.errorMessage) {
+			navigate(`../user/${result.uid}`);
+		}
+		console.log(result);
 	};
-
-	const onSubmitHandler: (event: React.FormEvent) => void = (event) => {
+	const onSubmitHandler = async (event: React.FormEvent): Promise<void> => {
 		event.preventDefault();
 		const enteredName = fullnameInputRef.current!.value.trim();
 		const enteredEmail = emailInputRef.current!.value.trim();
@@ -67,20 +48,11 @@ const Registration: React.FC = () => {
 			`Name is ${enteredName}, email is ${enteredEmail}, password is ${enteredPassword} confirm password is ${enteredConfirmPassword}`
 		);
 		console.log('submitted');
-		createUserWithEmailAndPassword(auth, enteredEmail, enteredPassword)
-			.then((userCredential) => {
-				// Signed in
-				const user = userCredential.user;
-				console.log(user);
-				navigate(`../user/${user.uid}`);
-				// ...
-			})
-			.catch((error) => {
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				console.log(error);
-				// ..
-			});
+		const result = await signUp(enteredEmail, enteredPassword);
+		if (!result.errorMessage) {
+			navigate(`../user/${result.uid}`);
+		}
+		console.log(result);
 	};
 	return (
 		<section className="font-exo text-gray-700 text-center grid place-items-center min-w-full pt-36 pb-10 bg-gradient-to-bl from-pry-02 via-pry-02 to-pry-03">
@@ -136,9 +108,7 @@ const Registration: React.FC = () => {
 				<Button
 					type="button"
 					className="mt-4 max-w-sm w-3/4 flex justify-center items-center gap-2"
-					onClickHandler={(event) => {
-						signUpWithGoogle();
-					}}>
+					onClickHandler={onLoginWithGoogleHandler}>
 					<span>Register with</span>{' '}
 					<Icon
 						className="text-2xl"

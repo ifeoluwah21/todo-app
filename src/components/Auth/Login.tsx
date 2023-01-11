@@ -4,44 +4,16 @@ import Button from '../UIs/Button';
 import hero from '../../assets/login.png';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { auth, provider } from '../../api/firebase';
-import {
-	GoogleAuthProvider,
-	signInWithEmailAndPassword,
-	signInWithPopup,
-} from 'firebase/auth';
 import { Icon } from '@iconify/react';
+import { userAuth } from '../../store/UserAuth';
 
 const Login: React.FC = () => {
 	const emailInputRef = useRef<HTMLInputElement>(null);
 	const passwordInputRef = useRef<HTMLInputElement>(null);
+	const { signWithGoogle, login, user } = userAuth();
 	const navigate = useNavigate();
 
-	const signInWithGoogle = () => {
-		signInWithPopup(auth, provider)
-			.then((result) => {
-				// This gives you a Google Access Token. You can use it to access the Google API.
-				const credential = GoogleAuthProvider.credentialFromResult(result);
-				const token = credential?.accessToken;
-				// The signed-in user info.
-				const user = result.user;
-				console.log(token, user);
-				navigate(`../user/${user.uid}`);
-				// ...
-			})
-			.catch((error) => {
-				// Handle Errors here.
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				// The email of the user's account used.
-				const email = error.customData.email;
-				// The AuthCredential type that was used.
-				const credential = GoogleAuthProvider.credentialFromError(error);
-				// ...
-			});
-	};
-
-	const onSubmitHandler: (event: React.FormEvent) => void = (event) => {
+	const onSubmitHandler = async (event: React.FormEvent): Promise<void> => {
 		event.preventDefault();
 		const enteredEmail = emailInputRef.current!.value.trim();
 		const enteredPassword = passwordInputRef.current!.value.trim();
@@ -52,20 +24,21 @@ const Login: React.FC = () => {
 		) {
 			return;
 		}
-		signInWithEmailAndPassword(auth, enteredEmail, enteredPassword)
-			.then((userCredential) => {
-				// Signed in
-				const user = userCredential.user;
-				console.log(user);
-				navigate(`../user/${user.uid}`);
-				// ...
-			})
-			.catch((error) => {
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				console.log(error);
-			});
-		// sign();
+
+		const result = await login(enteredEmail, enteredPassword);
+		if (!result.errorMessage) {
+			navigate(`../user/${result.uid}`);
+		}
+		console.log(result);
+	};
+	const onLoginWithGoogleHandler = async (
+		event: React.MouseEvent
+	): Promise<void> => {
+		const result = await signWithGoogle();
+		if (!result.errorMessage) {
+			navigate(`../user/${result.uid}`);
+		}
+		console.log(result);
 	};
 	return (
 		<section className="font-exo text-gray-700 text-center grid place-items-center min-w-full pt-36 pb-10 min-h-screen bg-gradient-to-bl from-pry-02 via-pry-02 to-pry-02">
@@ -106,9 +79,7 @@ const Login: React.FC = () => {
 				<Button
 					type="button"
 					className="mt-4 max-w-sm w-3/4 flex justify-center items-center gap-2"
-					onClickHandler={(event) => {
-						signInWithGoogle();
-					}}>
+					onClickHandler={onLoginWithGoogleHandler}>
 					<span>Login with</span>{' '}
 					<Icon
 						className="text-2xl"
