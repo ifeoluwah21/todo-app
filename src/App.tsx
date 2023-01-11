@@ -21,6 +21,7 @@ import Auth from './Pages/Register';
 import RootLayout from './Pages/RootLayout';
 import UserTodos from './Pages/UserTodos';
 import Register from './Pages/Register';
+import AuthContextProvider from './store/AuthContext';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -52,6 +53,10 @@ const router = createBrowserRouter(
 				path="/user/:userId"
 				element={<UserTodos />}
 			/>
+			<Route
+				path="*"
+				element={<Navigate to={'/'} />}
+			/>
 		</Route>
 	)
 );
@@ -77,7 +82,9 @@ function App() {
 		// 		<TodoList />
 		// 	</Wrapper>
 		// </main>
-		<RouterProvider router={router} />
+		<AuthContextProvider>
+			<RouterProvider router={router} />
+		</AuthContextProvider>
 	);
 }
 
