@@ -22,7 +22,7 @@ const Input = React.forwardRef<
 				type={props.type}
 				placeholder={props.placeholder}
 				className={
-					'rounded-full w-3/4 max-w-sm mx-auto pl-8 py-2 mb-6 text-base placeholder:text-base placeholder:tracking-widest placeholder-slate-800 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent'
+					'rounded-full block w-3/4 max-w-sm mx-auto pl-8 py-2 mb-6 text-base placeholder:text-base placeholder:tracking-widest placeholder-slate-800 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent'
 				}
 				required
 			/>
