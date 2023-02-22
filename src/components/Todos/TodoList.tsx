@@ -2,6 +2,7 @@ import React from 'react';
 import { Todo } from '../../models/Todo';
 import TodoItem from './TodoItem';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const DUMMYDATA: Todo[] = [
 	{
@@ -27,8 +28,12 @@ const TodoList: React.FC = () => {
 		navigate('/addTodo');
 	};
 	return (
-		<section className="w-11/12 max-w-md mx-auto">
-			<h1 className="font-bold text-xl text-left text-blue-700 my-2 px-4">
+		<motion.section
+			initial={{ x: '150vw' }}
+			animate={{ x: '0vw' }}
+			transition={{ delay: 0, type: 'spring' }}
+			className="w-11/12 max-w-md mx-auto">
+			<h1 className="font-bold text-xl text-left text-blue-700 my-2 mx-4 px-4">
 				Task List
 			</h1>
 			<div className="bg-white pb-10 pt-6 px-4 rounded-xl mb-12 max-h-80 overflow-y-scroll hide-scrollbar w-80 sm:w-96 max-w-sm mx-auto">
@@ -62,7 +67,7 @@ const TodoList: React.FC = () => {
 					})}
 				</ul>
 			</div>
-		</section>
+		</motion.section>
 	);
 };
 

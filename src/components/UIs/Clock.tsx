@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const Clock: React.FC<{
 	img: string | undefined;
@@ -27,7 +28,7 @@ const Clock: React.FC<{
 				width={'96'}
 			/>
 			<figcaption className="text-base text-blue-700 tracking-wide font-bold self-end sm:self-center ">
-{getTime()}
+				{getTime()}
 			</figcaption>
 		</figure>
 	);
