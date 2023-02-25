@@ -3,24 +3,7 @@ import { Todo } from '../../models/Todo';
 import TodoItem from './TodoItem';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-
-const DUMMYDATA: Todo[] = [
-	{
-		todo: 'Learning Reactjs',
-		isDone: false,
-		id: 'td1',
-	},
-	{
-		todo: 'Learning Typescript',
-		isDone: false,
-		id: 'td2',
-	},
-	{
-		todo: 'Learning Node',
-		isDone: true,
-		id: 'td3',
-	},
-];
+import { listVariant, taskContainerVariant } from '../../api/animate';
 
 const TodoList: React.FC = () => {
 	const navigate = useNavigate();
@@ -29,9 +12,9 @@ const TodoList: React.FC = () => {
 	};
 	return (
 		<motion.section
-			initial={{ x: '150vw' }}
-			animate={{ x: '0vw' }}
-			transition={{ delay: 0, type: 'spring' }}
+			variants={taskContainerVariant}
+			initial={'hidden'}
+			animate={'visible'}
 			className="w-11/12 max-w-md mx-auto">
 			<h1 className="font-bold text-xl text-left text-blue-700 my-2 mx-4 px-4">
 				Task List
@@ -54,18 +37,7 @@ const TodoList: React.FC = () => {
 						</svg>
 					</button>
 				</h2>
-				<ul className="space-y-6">
-					{DUMMYDATA.map((todo) => {
-						return (
-							<TodoItem
-								todo={todo.todo}
-								key={todo.id}
-								id={todo.id}
-								isDone={todo.isDone}
-							/>
-						);
-					})}
-				</ul>
+				<TodoItem />
 			</div>
 		</motion.section>
 	);
