@@ -25,7 +25,7 @@ function App() {
 				path="/"
 				element={<RootLayout />}>
 				<Route
-					path={'/home'}
+					path={'home'}
 					element={
 						<Navigate
 							to={'/'}
@@ -38,15 +38,15 @@ function App() {
 					element={<Home />}
 				/>
 				<Route
-					path="/register"
+					path="register"
 					element={<Register />}
 				/>
 				<Route
-					path="/login"
+					path="login"
 					element={<Login />}
 				/>
 				<Route
-					path="/user/:userId"
+					path="user/:userId"
 					element={<UserTodos />}
 				/>
 				<Route
@@ -54,7 +54,7 @@ function App() {
 					element={<Navigate to={'/'} />}
 				/>
 				<Route
-					path="/addTodo"
+					path="addTodo"
 					element={<AddTodo />}
 				/>
 			</Route>

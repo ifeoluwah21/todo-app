@@ -17,11 +17,11 @@ const containerVariant = {
 			mass: 0.4,
 			damping: 8,
 			when: 'beforeChildren',
-			staggerChildren: 2,
+			staggerChildren: 0.3,
 		},
 	},
 };
-const titleVariant = {
+const childVariant = {
 	hidden: {
 		opacity: 0,
 	},
@@ -40,7 +40,8 @@ const HomeSection: React.FC = () => {
 			className={
 				'font-exo text-gray-700 grid place-content-center mx-auto w-80 py-20 '
 			}>
-			<img
+			<motion.img
+				variants={childVariant}
 				src={hero}
 				alt="todo illustration"
 				className="mx-auto mb-12 object-cover"
@@ -48,7 +49,8 @@ const HomeSection: React.FC = () => {
 				height={'210'}
 			/>
 			<motion.h1
-				variants={titleVariant}
+				exit={'exit'}
+				variants={childVariant}
 				className="font-bold text-2xl text-center mb-10">
 				Design your TODOs
 			</motion.h1>

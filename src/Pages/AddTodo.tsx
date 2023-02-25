@@ -3,7 +3,7 @@ import Input from '../components/UIs/Input';
 import Button from '../components/UIs/Button';
 import TextArea from '../components/UIs/TextArea';
 
-const AddTodo = () => {
+const AddTodo: React.FC = () => {
 	const todoInputRef = useRef<HTMLInputElement>(null);
 	const descInputRef = useRef<HTMLInputElement>(null);
 	const addTodoHandler = (event: React.FormEvent) => {

@@ -2,11 +2,13 @@ import React from 'react';
 import { Todo } from '../../models/Todo';
 import { motion } from 'framer-motion';
 
-const TodoItem: React.FC<{
+interface Prop {
 	isDone: boolean;
 	todo: string;
 	id: string;
-}> = (props) => {
+}
+
+const TodoItem: React.FC<Prop> = (props) => {
 	return (
 		<motion.li
 			className="flex items-center"

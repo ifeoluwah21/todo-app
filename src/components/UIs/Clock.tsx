@@ -1,9 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Clock: React.FC<{
+interface Prop {
 	img: string | undefined;
-}> = (props) => {
+}
+
+const Clock: React.FC<Prop> = (props) => {
 	const getTime = () => {
 		let currentTime: Date = new Date();
 		let currentHour: number = currentTime.getHours();
