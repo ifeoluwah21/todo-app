@@ -1,8 +1,10 @@
 import React, { ReactNode } from 'react';
 
-const Wrapper: React.FC<{
+interface Prop {
 	children?: ReactNode;
-}> = (props) => {
+}
+
+const Wrapper: React.FC<Prop> = (props) => {
 	return <div className="p-1">{props.children}</div>;
 };
 

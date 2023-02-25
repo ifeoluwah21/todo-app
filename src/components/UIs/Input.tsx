@@ -1,14 +1,12 @@
 import React from 'react';
 
-const Input = React.forwardRef<
-	HTMLInputElement,
-	{
-		type: React.HTMLInputTypeAttribute;
-		placeholder: string;
-		label: string;
-		ref: React.RefObject<HTMLInputElement>;
-	}
->((props, ref) => {
+interface Prop {
+	type: React.HTMLInputTypeAttribute;
+	placeholder: string;
+	label: string;
+	ref: React.RefObject<HTMLInputElement>;
+}
+const Input = React.forwardRef<HTMLInputElement, Prop>((props, ref) => {
 	return (
 		<>
 			<label

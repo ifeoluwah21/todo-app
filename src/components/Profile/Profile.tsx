@@ -3,10 +3,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { auth } from '../../api/firebase';
 
-const Profile: React.FC<{
+interface Prop {
 	name: string;
 	img: string | undefined;
-}> = (props) => {
+}
+const Profile: React.FC<Prop> = (props) => {
 	return (
 		<figure className="font-exo bg-blue-700 w-full flex flex-col items-center pt-36 bg-hero-pattern bg-no-repeat bg-left-top">
 			<img
