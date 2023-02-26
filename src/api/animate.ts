@@ -60,7 +60,7 @@ export const loginContainerVariant: Variants = {
 export const childrenVariant: Variants = {
 	hidden: {
 		opacity: 0,
-		y: 1000,
+		y: 10,
 	},
 	visible: {
 		opacity: 1,
@@ -86,7 +86,7 @@ export const svgVariant: Variants = {
 	visible: {
 		rotate: 0,
 		transition: {
-			delay: 2,
+			delay: 1,
 			duration: 0.3,
 			staggerChildren: 0.2,
 			when: 'beforeChildren',
@@ -105,6 +105,37 @@ export const pathVariant: Variants = {
 		transition: {
 			duration: 0.5,
 			ease: 'easeInOut',
+		},
+	},
+};
+export const containerVariant: Variants = {
+	hidden: {
+		x: '150vw',
+	},
+	visible: {
+		x: '0vw',
+		transition: {
+			delay: 0.2,
+			type: 'spring',
+			stiffness: 120,
+			mass: 0.4,
+			damping: 8,
+			when: 'beforeChildren',
+			staggerChildren: 0.3,
+		},
+	},
+	exit: { opacity: 0, transition: { duration: 2 } },
+};
+export const childVariant: Variants = {
+	hidden: {
+		opacity: 0,
+	},
+	visible: {
+		opacity: 1,
+		transition: {
+			duration: 1,
+			staggerChildren: 0.8,
+			when: 'beforeChildren',
 		},
 	},
 };

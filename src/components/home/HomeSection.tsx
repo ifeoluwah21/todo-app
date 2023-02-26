@@ -2,33 +2,8 @@ import React from 'react';
 import hero from '../../assets/hero-logo.png';
 import Button from '../UIs/Button';
 import { motion } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
-
-const containerVariant = {
-	hidden: {
-		x: '150vw',
-	},
-	visible: {
-		x: '0vw',
-		transition: {
-			delay: 0.2,
-			type: 'spring',
-			stiffness: 120,
-			mass: 0.4,
-			damping: 8,
-			when: 'beforeChildren',
-			staggerChildren: 0.3,
-		},
-	},
-};
-const childVariant = {
-	hidden: {
-		opacity: 0,
-	},
-	visible: {
-		opacity: 1,
-	},
-};
+import { useNavigate } from 'react-router-dom';
+import { childVariant, containerVariant } from '../../api/animate';
 
 const HomeSection: React.FC = () => {
 	const navigate = useNavigate();
@@ -37,6 +12,7 @@ const HomeSection: React.FC = () => {
 			variants={containerVariant}
 			initial={'hidden'}
 			animate={'visible'}
+			exit={'exit'}
 			className={
 				'font-exo text-gray-700 grid place-content-center mx-auto w-80 py-20 '
 			}>

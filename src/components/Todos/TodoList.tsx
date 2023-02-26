@@ -16,7 +16,7 @@ const TodoList: React.FC = () => {
 			initial={'hidden'}
 			animate={'visible'}
 			className="w-11/12 max-w-md mx-auto">
-			<h1 className="font-bold text-xl text-left text-blue-700 my-2 mx-4 px-4">
+			<h1 className="font-bold text-xl text-left text-blue-700 my-2 mx-auto px-4 w-80 sm:w-96 max-w-sm">
 				Task List
 			</h1>
 			<div className="bg-white pb-10 pt-6 px-4 rounded-xl mb-12 max-h-80 overflow-y-scroll hide-scrollbar w-80 sm:w-96 max-w-sm mx-auto">

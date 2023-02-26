@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Input from '../UIs/Input';
 import Button from '../UIs/Button';
 import hero from '../../assets/login.png';
@@ -95,14 +95,16 @@ const Login: React.FC = () => {
 					/>
 				</Button>
 			</motion.form>
-			<span className="mt-4 tracking-wide">
+			<motion.span
+				variants={childrenVariant}
+				className="mt-4 tracking-wide">
 				don't have an account?{' '}
 				<Link
 					to={'../register'}
 					className="text-red-700 font-bold transition-colors duration-150 hover:text-red-900">
 					Register
 				</Link>
-			</span>
+			</motion.span>
 		</motion.section>
 	);
 };

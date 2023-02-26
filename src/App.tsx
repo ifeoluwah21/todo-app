@@ -12,7 +12,6 @@ import RootLayout from './Pages/RootLayout';
 import UserTodos from './Pages/UserTodos';
 import Register from './Pages/Register';
 import AuthContextProvider from './store/AuthContext';
-import { auth } from './api/firebase';
 import AddTodo from './Pages/AddTodo';
 import { userAuth } from './store/UserAuth';
 import { User } from 'firebase/auth';
