@@ -1,4 +1,6 @@
-export const taskContainerVariant = {
+import { Variants } from 'framer-motion';
+
+export const taskContainerVariant: Variants = {
 	hidden: { x: '150vw' },
 	visible: {
 		x: '0vw',
@@ -10,7 +12,7 @@ export const taskContainerVariant = {
 	},
 };
 
-export const listVariant = {
+export const listVariant: Variants = {
 	hidden: {
 		y: '100vh',
 	},
@@ -23,7 +25,7 @@ export const listVariant = {
 	},
 };
 
-export const itemVariant = {
+export const itemVariant: Variants = {
 	hidden: {
 		opacity: 0,
 	},
@@ -35,5 +37,74 @@ export const itemVariant = {
 		scale: 1.15,
 		originX: 0,
 		type: 'spring',
+	},
+};
+
+export const loginContainerVariant: Variants = {
+	hidden: {
+		x: '150vw',
+	},
+	visible: {
+		x: '0vw',
+		transition: {
+			type: 'spring',
+			stiffness: 120,
+			duration: 0.5,
+			staggerChildren: 0.8,
+
+			when: 'beforeChildren',
+		},
+	},
+};
+
+export const childrenVariant: Variants = {
+	hidden: {
+		opacity: 0,
+		y: 1000,
+	},
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			opacity: {
+				duration: 0.15,
+				ease: 'easeIn',
+			},
+			y: {
+				delay: 0.2,
+				duration: 0.25,
+				ease: 'linear',
+			},
+		},
+	},
+};
+
+export const svgVariant: Variants = {
+	hidden: {
+		rotate: 360,
+	},
+	visible: {
+		rotate: 0,
+		transition: {
+			delay: 2,
+			duration: 0.3,
+			staggerChildren: 0.2,
+			when: 'beforeChildren',
+		},
+	},
+};
+
+export const pathVariant: Variants = {
+	hidden: {
+		opacity: 0,
+		pathLength: 0,
+	},
+	visible: {
+		opacity: 1,
+		pathLength: 1,
+		transition: {
+			duration: 0.5,
+			ease: 'easeInOut',
+		},
 	},
 };
