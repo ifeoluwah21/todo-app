@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { motion, Variants } from 'framer-motion';
 import Input from '../UIs/Input';
 import Button from '../UIs/Button';
 import hero from '../../assets/login.png';
@@ -6,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { userAuth } from '../../store/UserAuth';
+import { childrenVariant, loginContainerVariant } from '../../api/animate';
 
 const Login: React.FC = () => {
 	const emailInputRef = useRef<HTMLInputElement>(null);
@@ -41,16 +43,22 @@ const Login: React.FC = () => {
 		console.log(result);
 	};
 	return (
-		<section className="font-exo text-gray-700 text-center grid place-items-center min-w-full pt-36 pb-10 min-h-screen bg-gradient-to-bl from-pry-02 via-pry-02 to-pry-02">
+		<motion.section
+			variants={loginContainerVariant}
+			initial={'hidden'}
+			animate={'visible'}
+			className="font-exo text-gray-700 text-center grid place-items-center min-w-full pt-36 pb-10 min-h-screen">
 			<h1 className="font-bold text-4xl mb-4">Welcome !</h1>
-			<img
+			<motion.img
+				variants={childrenVariant}
 				src={hero}
 				alt="todo illustration"
 				className="mx-auto mb-12 object-cover"
 				width={'210'}
 				height={'210'}
 			/>
-			<form
+			<motion.form
+				variants={childrenVariant}
 				onSubmit={onSubmitHandler}
 				className="w-80 sm:w-96 max-w-sm mx-auto flex flex-col flex-nowrap items-center">
 				<Input
@@ -86,7 +94,7 @@ const Login: React.FC = () => {
 						icon="flat-color-icons:google"
 					/>
 				</Button>
-			</form>
+			</motion.form>
 			<span className="mt-4 tracking-wide">
 				don't have an account?{' '}
 				<Link
@@ -95,7 +103,7 @@ const Login: React.FC = () => {
 					Register
 				</Link>
 			</span>
-		</section>
+		</motion.section>
 	);
 };
 

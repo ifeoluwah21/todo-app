@@ -4,6 +4,13 @@ import Button from '../UIs/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { userAuth } from '../../store/UserAuth';
+import { motion } from 'framer-motion';
+import {
+	childrenVariant,
+	pathVariant,
+	loginContainerVariant as registerContainerVariant,
+	svgVariant,
+} from '../../api/animate';
 
 const Registration: React.FC = () => {
 	const fullnameInputRef = useRef<HTMLInputElement>(null);
@@ -55,24 +62,37 @@ const Registration: React.FC = () => {
 		console.log(result);
 	};
 	return (
-		<section className="font-exo text-gray-700 text-center grid place-items-center min-w-full pt-36 pb-10 bg-gradient-to-bl from-pry-02 via-pry-02 to-pry-03">
+		<motion.section
+			variants={registerContainerVariant}
+			initial={'hidden'}
+			animate={'visible'}
+			className="font-exo text-gray-700 text-center grid place-items-center min-w-full pt-36 pb-10">
 			<h1 className="font-bold text-4xl mb-4">Wel Done!</h1>
-			<p className="text-base lowercase mb-4">you're about to register now.</p>
-			<svg
+			<motion.p
+				variants={childrenVariant}
+				className="text-base lowercase mb-4">
+				you're about to register now.
+			</motion.p>
+			<motion.svg
+				variants={svgVariant}
+				initial={'hidden'}
+				animate={'visible'}
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
 				viewBox="0 0 24 24"
 				strokeWidth={1.5}
 				stroke="currentColor"
 				className="w-16 h-16 mb-4">
-				<path
+				<motion.path
+					variants={pathVariant}
 					strokeLinecap="round"
 					strokeLinejoin="round"
 					d="M15.75 19.5L8.25 12l7.5-7.5"
 				/>
-			</svg>
+			</motion.svg>
 
-			<form
+			<motion.form
+				variants={childrenVariant}
 				onSubmit={onSubmitHandler}
 				className="w-80 sm:w-96 max-w-sm mx-auto flex flex-col flex-nowrap items-center">
 				<Input
@@ -115,16 +135,18 @@ const Registration: React.FC = () => {
 						icon="flat-color-icons:google"
 					/>
 				</Button>
-			</form>
-			<span className="mt-4 tracking-wide">
+			</motion.form>
+			<motion.span
+				variants={childrenVariant}
+				className="mt-4 tracking-wide">
 				Already have an account?{' '}
 				<Link
 					to="../login"
 					className="text-red-700 font-bold transition-colors duration-150 hover:text-red-900">
 					Login
 				</Link>
-			</span>
-		</section>
+			</motion.span>
+		</motion.section>
 	);
 };
 
