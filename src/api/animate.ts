@@ -86,7 +86,7 @@ export const svgVariant: Variants = {
 	visible: {
 		rotate: 0,
 		transition: {
-			delay: 2,
+			delay: 1,
 			duration: 0.3,
 			staggerChildren: 0.2,
 			when: 'beforeChildren',
@@ -132,5 +132,10 @@ export const childVariant: Variants = {
 	},
 	visible: {
 		opacity: 1,
+		transition: {
+			duration: 1,
+			staggerChildren: 0.8,
+			when: 'beforeChildren',
+		},
 	},
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { childVariant } from '../../api/animate';
 
 interface Prop {
 	img: string | undefined;
@@ -22,17 +23,24 @@ const Clock: React.FC<Prop> = (props) => {
 	};
 
 	return (
-		<figure className="w-full flex flex-col-reverse sm:flex-col gap-2 py-8 px-4 sm:px-8 justify-center items-center">
-			<img
+		<motion.figure
+			variants={childVariant}
+			initial={'hidden'}
+			animate={'visible'}
+			className="w-full flex flex-col-reverse sm:flex-col gap-2 py-8 px-4 sm:px-8 justify-center items-center">
+			<motion.img
+				variants={childVariant}
 				src={props.img}
 				alt="Clock"
 				className="w-24"
 				width={'96'}
 			/>
-			<figcaption className="text-base text-blue-700 tracking-wide font-bold self-end sm:self-center ">
+			<motion.figcaption
+				variants={childVariant}
+				className="text-base text-blue-700 tracking-wide font-bold self-end sm:self-center ">
 				{getTime()}
-			</figcaption>
-		</figure>
+			</motion.figcaption>
+		</motion.figure>
 	);
 };
 
