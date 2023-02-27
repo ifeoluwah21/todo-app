@@ -7,6 +7,16 @@ import {
 	signInWithPopup,
 } from 'firebase/auth';
 import { GoogleAuthProvider } from 'firebase/auth';
+import {
+	getFirestore,
+	collection,
+	getDocs,
+	doc,
+	setDoc,
+	updateDoc,
+	getDoc,
+	arrayUnion,
+} from 'firebase/firestore';
 
 export const provider = new GoogleAuthProvider();
 
@@ -17,7 +27,6 @@ provider.setCustomParameters({
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
 	apiKey: 'AIzaSyBk79MnTPIho9qvkSNRn_7MtqcCjoyIRPg',
@@ -68,7 +77,6 @@ export function sign() {
 			const token = credential.accessToken;
 			// The signed-in user info.
 			const user = result.user;
-			console.log(token, user);
 			// ...
 		})
 		.catch((error) => {
@@ -81,4 +89,40 @@ export function sign() {
 			const credential = GoogleAuthProvider.credentialFromError(error);
 			// ...
 		});
+}
+
+//Initialize Firestore
+const db = getFirestore(app);
+
+//Collection Reference
+export const colRef = collection(db, 'todos');
+
+//Get docs
+export async function getUserDoc(userId) {
+	let todos;
+	const docSnapshot = await getDoc(doc(colRef, userId));
+	if (docSnapshot.exists()) {
+		todos = docSnapshot.data();
+		console.log(docSnapshot.data());
+		return todos;
+	} else {
+		initUserDoc(userId);
+		todos = { userId, tasks: [] };
+	}
+
+	return todos;
+}
+
+//Adding document
+export async function initUserDoc(userId) {
+	await setDoc(doc(colRef, userId), {
+		tasks: [],
+		userId,
+	});
+}
+
+export async function updateUserDoc(userId, updatedData) {
+	await updateDoc(doc(colRef, userId), {
+		tasks: arrayUnion(updatedData),
+	});
 }

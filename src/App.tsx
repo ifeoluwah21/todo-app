@@ -15,6 +15,7 @@ import AuthContextProvider from './store/AuthContext';
 import AddTodo from './Pages/AddTodo';
 import { userAuth } from './store/UserAuth';
 import { User } from 'firebase/auth';
+import { TodoItemLoader } from './components/Todos/TodoItem';
 
 function App() {
 	const { user }: { user: User | null } = userAuth();
@@ -47,13 +48,14 @@ function App() {
 				<Route
 					path="user/:userId"
 					element={<UserTodos />}
+					loader={TodoItemLoader}
 				/>
 				<Route
 					path="*"
 					element={<Navigate to={'/'} />}
 				/>
 				<Route
-					path="addTodo"
+					path="/user/:userId/addTodo"
 					element={<AddTodo />}
 				/>
 			</Route>
