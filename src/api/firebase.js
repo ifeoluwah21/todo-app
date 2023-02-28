@@ -48,13 +48,12 @@ export async function signIn(email, password) {
 		.then((userCredential) => {
 			// Signed in
 			const user = userCredential.user;
-			console.log(user);
+
 			// ...
 		})
 		.catch((error) => {
 			const errorCode = error.code;
 			const errorMessage = error.message;
-			console.log(error);
 		});
 }
 
@@ -103,7 +102,6 @@ export async function getUserDoc(userId) {
 	const docSnapshot = await getDoc(doc(colRef, userId));
 	if (docSnapshot.exists()) {
 		todos = docSnapshot.data();
-		console.log(docSnapshot.data());
 		return todos;
 	} else {
 		initUserDoc(userId);

@@ -27,7 +27,6 @@ const Registration: React.FC = () => {
 		if (!result.errorMessage) {
 			navigate(`../user/${result.uid}`);
 		}
-		console.log(result);
 	};
 	const onSubmitHandler = async (event: React.FormEvent): Promise<void> => {
 		event.preventDefault();
@@ -51,15 +50,10 @@ const Registration: React.FC = () => {
 		if (enteredConfirmPassword !== enteredPassword) {
 			return;
 		}
-		console.log(
-			`Name is ${enteredName}, email is ${enteredEmail}, password is ${enteredPassword} confirm password is ${enteredConfirmPassword}`
-		);
-		console.log('submitted');
 		const result = await signUp(enteredEmail, enteredPassword);
 		if (!result.errorMessage) {
 			navigate(`../user/${result.uid}`);
 		}
-		console.log(result);
 	};
 	return (
 		<motion.section
