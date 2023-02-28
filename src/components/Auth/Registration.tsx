@@ -3,7 +3,6 @@ import Input from '../UIs/Input';
 import Button from '../UIs/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-import { userAuth } from '../../store/UserAuth';
 import { motion } from 'framer-motion';
 import {
 	childrenVariant,
@@ -11,22 +10,20 @@ import {
 	loginContainerVariant as registerContainerVariant,
 	svgVariant,
 } from '../../api/animate';
+import { userAuth } from '../../store/UserAuthContext';
 
 const Registration: React.FC = () => {
 	const fullnameInputRef = useRef<HTMLInputElement>(null);
 	const emailInputRef = useRef<HTMLInputElement>(null);
 	const passwordInputRef = useRef<HTMLInputElement>(null);
 	const confirmPasswordInputRef = useRef<HTMLInputElement>(null);
-	const { signUp, signWithGoogle } = userAuth();
+	const { signUpWithEmail, signInWithGoogle: signUpWithGoogle } = userAuth();
 	const navigate = useNavigate();
 
 	const onLoginWithGoogleHandler = async (
 		event: React.MouseEvent
 	): Promise<void> => {
-		const result = await signWithGoogle();
-		if (!result.errorMessage) {
-			navigate(`../user/${result.uid}`);
-		}
+		signUpWithGoogle();
 	};
 	const onSubmitHandler = async (event: React.FormEvent): Promise<void> => {
 		event.preventDefault();
@@ -50,10 +47,7 @@ const Registration: React.FC = () => {
 		if (enteredConfirmPassword !== enteredPassword) {
 			return;
 		}
-		const result = await signUp(enteredEmail, enteredPassword);
-		if (!result.errorMessage) {
-			navigate(`../user/${result.uid}`);
-		}
+		signUpWithEmail(enteredEmail, enteredPassword);
 	};
 	return (
 		<motion.section

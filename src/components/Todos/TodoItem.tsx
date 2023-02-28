@@ -1,31 +1,11 @@
-import React, { useContext, useState } from 'react';
-import { Task, Todo } from '../../models/Todo';
+import React from 'react';
+import { Todo } from '../../models/Todo';
 import { motion } from 'framer-motion';
 import { itemVariant, listVariant } from '../../api/animate';
-import { authContext } from '../../store/AuthContext';
 import { getUserDoc } from '../../api/firebase';
 import { useLoaderData } from 'react-router-dom';
 
-// const DUMMYDATA: Todo[] = [
-// 	{
-// 		todo: 'Learning Reactjs',
-// 		isDone: false,
-// 		id: 'td1',
-// 	},
-// 	{
-// 		todo: 'Learning Typescript',
-// 		isDone: false,
-// 		id: 'td2',
-// 	},
-// 	{
-// 		todo: 'Learning Node',
-// 		isDone: true,
-// 		id: 'td3',
-// 	},
-// ];
-
 const TodoItem: React.FC = () => {
-	const { user } = useContext(authContext);
 	const loadedData = useLoaderData() as Todo;
 	const userTodos = loadedData.tasks;
 	return (
