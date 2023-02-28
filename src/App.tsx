@@ -11,13 +11,8 @@ import Home from './Pages/Home';
 import RootLayout from './Pages/RootLayout';
 import UserTodos from './Pages/UserTodos';
 import Register from './Pages/Register';
-import AuthContextProvider from './store/AuthContext';
 import AddTodo from './Pages/AddTodo';
-import { userAuth } from './store/UserAuth';
-import { User, onAuthStateChanged } from 'firebase/auth';
 import { TodoItemLoader } from './components/Todos/TodoItem';
-import { auth } from './api/firebase';
-import { useEffect, useState } from 'react';
 
 function App() {
 	const router = createBrowserRouter(
@@ -65,30 +60,7 @@ function App() {
 			</Route>
 		)
 	);
-	return (
-		// <main className="bg-hero-pattern font-exo bg-no-repeat bg-left-top">
-		// 	{/* <Button
-		// 		onClickHandler={(event) => {}}
-		// 		className="border-none"
-		// 		type={"button"}>
-		// 		Click
-		// 	</Button> */}
-		// 	{/* <HomeSection /> */}
-		// 	{/* <Registration /> */}
-		// 	{/* <Login /> */}
-		// 	<Profile
-		// 		img={img}
-		// 		name={"Ifeoluwa"}
-		// 	/>
-		// 	<Wrapper>
-		// 		<Clock img={clock} />
-		// 		<TodoList />
-		// 	</Wrapper>
-		// </main>
-		<AuthContextProvider>
-			<RouterProvider router={router} />
-		</AuthContextProvider>
-	);
+	return <RouterProvider router={router} />;
 }
 
 export default App;

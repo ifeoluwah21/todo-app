@@ -1,15 +1,15 @@
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import Input from '../components/UIs/Input';
 import Button from '../components/UIs/Button';
 import TextArea from '../components/UIs/TextArea';
-import { authContext } from '../store/AuthContext';
 import { updateUserDoc } from '../api/firebase';
 import { useNavigate } from 'react-router-dom';
+import { userAuth } from '../store/UserAuthContext';
 
 const AddTodo: React.FC = () => {
 	const titleInputRef = useRef<HTMLInputElement>(null);
 	const descInputRef = useRef<HTMLInputElement>(null);
-	const { user } = useContext(authContext);
+	const { user } = userAuth();
 	const navigate = useNavigate();
 	const addTodoHandler = (event: React.FormEvent) => {
 		event.preventDefault();

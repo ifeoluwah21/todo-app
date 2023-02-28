@@ -1,14 +1,13 @@
 import React, { useContext } from 'react';
-import { Todo } from '../../models/Todo';
 import TodoItem from './TodoItem';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { listVariant, taskContainerVariant } from '../../api/animate';
-import { authContext } from '../../store/AuthContext';
+import { taskContainerVariant } from '../../api/animate';
+import { userAuth } from '../../store/UserAuthContext';
 
 const TodoList: React.FC = () => {
 	const navigate = useNavigate();
-	const { user } = useContext(authContext);
+	const { user } = userAuth();
 	const addHandler = (event: React.MouseEvent) => {
 		navigate(`/user/${user!.uid}/addTodo`);
 	};

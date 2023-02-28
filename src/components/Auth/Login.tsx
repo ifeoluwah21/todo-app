@@ -6,13 +6,13 @@ import hero from '../../assets/login.png';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-import { userAuth } from '../../store/UserAuth';
 import { childrenVariant, loginContainerVariant } from '../../api/animate';
+import { userAuth } from '../../store/UserAuthContext';
 
 const Login: React.FC = () => {
 	const emailInputRef = useRef<HTMLInputElement>(null);
 	const passwordInputRef = useRef<HTMLInputElement>(null);
-	const { signWithGoogle, login, user } = userAuth();
+	const { user, signInWithGoogle, signInWithEmail } = userAuth();
 	const navigate = useNavigate();
 
 	const onSubmitHandler = async (event: React.FormEvent): Promise<void> => {
@@ -26,19 +26,12 @@ const Login: React.FC = () => {
 		) {
 			return;
 		}
-
-		const result = await login(enteredEmail, enteredPassword);
-		if (!result.errorMessage) {
-			navigate(`../user/${result.uid}`);
-		}
+		signInWithEmail(enteredEmail, enteredPassword);
 	};
 	const onLoginWithGoogleHandler = async (
 		event: React.MouseEvent
 	): Promise<void> => {
-		const result = await signWithGoogle();
-		if (!result.errorMessage) {
-			navigate(`../user/${result.uid}`);
-		}
+		signInWithGoogle();
 	};
 	return (
 		<motion.section

@@ -5,10 +5,10 @@ import img from '../assets/avatar.png';
 import Clock from '../components/UIs/Clock';
 import clock from '../assets/clock.png';
 import TodoList from '../components/Todos/TodoList';
-import { auth } from '../api/firebase';
+import { userAuth } from '../store/UserAuthContext';
 
 const UserTodos: React.FC = () => {
-	const user = auth.currentUser;
+	const { user } = userAuth();
 	return (
 		<>
 			<Profile

@@ -1,10 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import { UserAuthProvider } from '../store/UserAuthContext';
 
 const RootLayout: React.FC = () => {
 	return (
 		<main className="bg-hero-pattern min-h-screen w-full font-exo bg-no-repeat bg-left-top">
-			<Outlet />
+			<UserAuthProvider>
+				<Outlet />
+			</UserAuthProvider>
 		</main>
 	);
 };
