@@ -27,7 +27,6 @@ const AuthContextProvider: React.FC<{ children?: ReactNode }> = (props) => {
 				password
 			);
 			const user = userCredential.user;
-			console.log(`logged in ${user}`);
 			setUser(user);
 			result = user;
 		} catch (e: any) {
@@ -67,7 +66,6 @@ const AuthContextProvider: React.FC<{ children?: ReactNode }> = (props) => {
 			const user = result.user;
 			value = user;
 			setUser(user);
-			console.log(token, user);
 		} catch (error: any) {
 			const errorCode = error.code;
 			const errorMessage = error.message;

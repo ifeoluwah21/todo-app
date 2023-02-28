@@ -25,7 +25,7 @@ const AddTodo: React.FC = () => {
 				isCompleted: false,
 			});
 		}
-		navigate(`user/${user!.uid}`, { replace: true });
+		navigate(`/user/${user!.uid}`, { replace: true });
 	};
 	return (
 		<section className={'font-exo text-gray-700 grid mx-auto w-3/4 py-20 '}>

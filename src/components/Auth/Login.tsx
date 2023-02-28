@@ -31,7 +31,6 @@ const Login: React.FC = () => {
 		if (!result.errorMessage) {
 			navigate(`../user/${result.uid}`);
 		}
-		console.log(result);
 	};
 	const onLoginWithGoogleHandler = async (
 		event: React.MouseEvent
@@ -40,7 +39,6 @@ const Login: React.FC = () => {
 		if (!result.errorMessage) {
 			navigate(`../user/${result.uid}`);
 		}
-		console.log(result);
 	};
 	return (
 		<motion.section

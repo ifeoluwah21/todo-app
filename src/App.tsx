@@ -14,11 +14,12 @@ import Register from './Pages/Register';
 import AuthContextProvider from './store/AuthContext';
 import AddTodo from './Pages/AddTodo';
 import { userAuth } from './store/UserAuth';
-import { User } from 'firebase/auth';
+import { User, onAuthStateChanged } from 'firebase/auth';
 import { TodoItemLoader } from './components/Todos/TodoItem';
+import { auth } from './api/firebase';
+import { useEffect, useState } from 'react';
 
 function App() {
-	const { user }: { user: User | null } = userAuth();
 	const router = createBrowserRouter(
 		createRoutesFromElements(
 			<Route
@@ -37,14 +38,17 @@ function App() {
 					index
 					element={<Home />}
 				/>
+
 				<Route
 					path="register"
 					element={<Register />}
 				/>
+
 				<Route
 					path="login"
 					element={<Login />}
 				/>
+
 				<Route
 					path="user/:userId"
 					element={<UserTodos />}
